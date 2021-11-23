@@ -1,0 +1,1 @@
+# [ссылка на задание](https://github.com/netology-code/dj-homeworks/tree/drf/3.3-permissions/api_with_restrictions)
