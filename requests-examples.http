@@ -22,7 +22,7 @@ Content-Type: application/json
 Authorization: Token a46bbc69a59f2849f84a801f0a4d9e460819ede4
 
 {
-  "advertisement": 12
+  "advertisement": 1
 }
 
 ###
@@ -32,21 +32,15 @@ Authorization: Token a46bbc69a59f2849f84a801f0a4d9e460819ede4
 GET {{baseUrl}}/advertisements/13
 Content-Type: application/json
 Authorization: Token a46bbc69a59f2849f84a801f0a4d9e460819ede4
-
-{
-  "description": "Срочно",
-  "status": "DRAFT"
-}
-
 ###
 
-# создание объявления
-POST {{baseUrl}}/advertisements/
+# удаление объявлений
+DELETE {{baseUrl}}/advertisements/15
 Content-Type: application/json
-Authorization: Token a46bbc69a59f2849f84a801f0a4d9e460819ede4
-
+Authorization: Token 8a2fb6054be6b832bcced9a8f33e261b6104701a
 
 ###
+
 
 # создание объявления
 POST {{baseUrl}}/advertisements/

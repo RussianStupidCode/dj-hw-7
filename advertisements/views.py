@@ -2,7 +2,7 @@ from rest_framework.authtoken.admin import User
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from rest_framework.viewsets import ModelViewSet
 
 from advertisements.filters import AdvertisementFilter
@@ -40,6 +40,9 @@ class AdvertisementViewSet(ModelViewSet):
             serializer = FavoritesSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
 
+            if serializer.validated_data['advertisement'].creator == request.user:
+                return Response("user can't add favorite her advertisement", status=HTTP_400_BAD_REQUEST)
+
             user = User.objects.get(id=request.user.id)
             serializer.validated_data['advertisement'].users.add(user)
 
@@ -49,7 +52,7 @@ class AdvertisementViewSet(ModelViewSet):
         """Получение прав для действий."""
         if self.action == "favorites":
             return [IsAuthenticated()]
-        if self.action in ["create", "update", "partial_update"]:
+        if self.action in ["create", "update", "partial_update", "delete"]:
             return [IsOwnerPermission()]
         return [IsReadPermission()]
 
